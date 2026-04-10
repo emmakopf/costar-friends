@@ -1,0 +1,507 @@
+/* ---- Starfield ---- */
+.stars, .stars2, .stars3 {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.stars {
+  background: radial-gradient(1px 1px at 20% 30%, rgba(255,255,255,0.8), transparent),
+              radial-gradient(1px 1px at 40% 70%, rgba(255,255,255,0.6), transparent),
+              radial-gradient(1px 1px at 60% 20%, rgba(255,255,255,0.7), transparent),
+              radial-gradient(1px 1px at 80% 50%, rgba(255,255,255,0.5), transparent),
+              radial-gradient(1.5px 1.5px at 10% 80%, rgba(192,132,252,0.6), transparent),
+              radial-gradient(1px 1px at 90% 10%, rgba(255,255,255,0.6), transparent),
+              radial-gradient(1px 1px at 50% 50%, rgba(255,255,255,0.5), transparent),
+              radial-gradient(1px 1px at 30% 90%, rgba(255,255,255,0.4), transparent),
+              radial-gradient(1.5px 1.5px at 70% 40%, rgba(96,165,250,0.5), transparent),
+              radial-gradient(1px 1px at 15% 55%, rgba(255,255,255,0.6), transparent);
+  background-size: 250px 250px;
+  animation: drift 80s linear infinite;
+}
+
+.stars2 {
+  background: radial-gradient(1px 1px at 25% 15%, rgba(255,255,255,0.5), transparent),
+              radial-gradient(1.5px 1.5px at 55% 85%, rgba(192,132,252,0.4), transparent),
+              radial-gradient(1px 1px at 75% 35%, rgba(255,255,255,0.4), transparent),
+              radial-gradient(1px 1px at 45% 65%, rgba(255,255,255,0.3), transparent),
+              radial-gradient(1px 1px at 85% 75%, rgba(96,165,250,0.3), transparent),
+              radial-gradient(1px 1px at 35% 45%, rgba(255,255,255,0.5), transparent),
+              radial-gradient(1px 1px at 65% 25%, rgba(255,255,255,0.4), transparent),
+              radial-gradient(1px 1px at 5% 95%, rgba(255,255,255,0.3), transparent);
+  background-size: 350px 350px;
+  animation: drift 120s linear infinite;
+}
+
+.stars3 {
+  background: radial-gradient(2px 2px at 33% 66%, rgba(192,132,252,0.3), transparent),
+              radial-gradient(2px 2px at 66% 33%, rgba(96,165,250,0.25), transparent),
+              radial-gradient(1.5px 1.5px at 50% 10%, rgba(255,255,255,0.3), transparent),
+              radial-gradient(1.5px 1.5px at 15% 40%, rgba(255,255,255,0.2), transparent);
+  background-size: 500px 500px;
+  animation: drift 200s linear infinite;
+}
+
+@keyframes drift {
+  from { transform: translateY(0); }
+  to { transform: translateY(-250px); }
+}
+
+/* ---- Layout ---- */
+.app {
+  position: relative;
+  z-index: 1;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 60px 24px 40px;
+}
+
+header {
+  text-align: center;
+  margin-bottom: 48px;
+}
+
+h1 {
+  font-size: 48px;
+  font-weight: 300;
+  letter-spacing: 6px;
+  text-transform: uppercase;
+  color: var(--text-bright);
+  margin-bottom: 12px;
+}
+
+h2 {
+  font-size: 20px;
+  font-weight: 400;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--text-bright);
+  margin-bottom: 24px;
+  text-align: center;
+}
+
+.subtitle {
+  font-size: 15px;
+  letter-spacing: 2px;
+  color: var(--text);
+  text-transform: uppercase;
+}
+
+/* ---- Chart Cards ---- */
+.charts-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.chart-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 20px;
+  transition: border-color 0.3s;
+}
+
+.chart-card:hover {
+  border-color: rgba(192, 132, 252, 0.2);
+}
+
+.chart-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.name-input {
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--border);
+  color: var(--text-bright);
+  font-size: 18px;
+  font-family: var(--sans);
+  letter-spacing: 1px;
+  padding: 4px 0;
+  width: 100%;
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+.name-input:focus {
+  border-color: var(--accent);
+}
+
+.name-input::placeholder {
+  color: rgba(255, 255, 255, 0.2);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 14px;
+}
+
+.remove-btn {
+  background: none;
+  border: none;
+  color: var(--text);
+  font-size: 18px;
+  cursor: pointer;
+  padding: 4px 8px;
+  opacity: 0.4;
+  transition: opacity 0.2s;
+}
+
+.remove-btn:hover {
+  opacity: 1;
+  color: #f87171;
+}
+
+.placements {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.sign-select {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.sign-label {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--text);
+  width: 70px;
+  text-align: right;
+  flex-shrink: 0;
+}
+
+.sign-select select {
+  flex: 1;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  color: var(--text-bright);
+  font-family: var(--sans);
+  font-size: 14px;
+  padding: 6px 10px;
+  cursor: pointer;
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+.sign-select select:focus {
+  border-color: var(--accent);
+}
+
+.sign-select select option {
+  background: #1a1a2e;
+  color: var(--text-bright);
+}
+
+/* ---- Actions ---- */
+.actions {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  margin-bottom: 48px;
+}
+
+.add-btn, .calculate-btn {
+  font-family: var(--sans);
+  font-size: 13px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 12px 28px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.add-btn {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--text);
+}
+
+.add-btn:hover {
+  border-color: var(--accent);
+  color: var(--text-bright);
+}
+
+.calculate-btn {
+  background: linear-gradient(135deg, rgba(192,132,252,0.2), rgba(96,165,250,0.2));
+  border: 1px solid rgba(192,132,252,0.3);
+  color: var(--accent);
+}
+
+.calculate-btn:hover:not(:disabled) {
+  background: linear-gradient(135deg, rgba(192,132,252,0.3), rgba(96,165,250,0.3));
+  border-color: var(--accent);
+}
+
+.calculate-btn:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+/* ---- Results ---- */
+.results-section {
+  margin-bottom: 48px;
+}
+
+.group-score {
+  text-align: center;
+  margin-bottom: 12px;
+}
+
+.group-score-number {
+  font-size: 64px;
+  font-weight: 200;
+  letter-spacing: 4px;
+  margin-bottom: 8px;
+}
+
+/* ---- Score Bar ---- */
+.score-bar {
+  position: relative;
+  height: 6px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 3px;
+  overflow: visible;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.score-bar.small {
+  height: 4px;
+  max-width: 100%;
+}
+
+.score-fill {
+  height: 100%;
+  border-radius: 3px;
+  transition: width 0.6s ease;
+}
+
+.score-text {
+  position: absolute;
+  right: 0;
+  top: -20px;
+  font-size: 12px;
+  color: var(--text);
+  letter-spacing: 1px;
+}
+
+.score-bar.small .score-text {
+  top: -18px;
+  font-size: 11px;
+}
+
+/* ---- Matrix ---- */
+.matrix-wrapper {
+  overflow-x: auto;
+  margin-bottom: 12px;
+}
+
+.matrix {
+  border-collapse: collapse;
+  margin: 0 auto;
+  font-size: 14px;
+}
+
+.matrix th, .matrix td {
+  padding: 10px 14px;
+  text-align: center;
+  border: 1px solid var(--border);
+}
+
+.matrix th {
+  color: var(--text);
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 12px;
+}
+
+.matrix-name {
+  color: var(--text-bright);
+  letter-spacing: 1px;
+  font-size: 13px;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.matrix-cell {
+  font-family: var(--mono);
+  font-size: 14px;
+  font-weight: 500;
+  min-width: 60px;
+}
+
+.matrix-cell.self {
+  font-size: 20px;
+  color: rgba(255, 255, 255, 0.15);
+}
+
+.hint {
+  text-align: center;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.25);
+  letter-spacing: 1px;
+  margin-top: 8px;
+}
+
+/* ---- Superlatives ---- */
+.superlatives-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 12px;
+}
+
+.superlative-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 20px;
+  text-align: center;
+}
+
+.superlative-title {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  color: var(--accent);
+  margin-bottom: 8px;
+}
+
+.superlative-content {
+  font-size: 15px;
+  color: var(--text-bright);
+  line-height: 1.4;
+}
+
+/* ---- Pairs List ---- */
+.pairs-list {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 24px;
+}
+
+.pair-button {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 12px 16px;
+  color: var(--text-bright);
+  font-family: var(--sans);
+  font-size: 14px;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.pair-button:hover {
+  background: var(--surface-hover);
+}
+
+.pair-button.active {
+  border-color: var(--accent);
+  background: var(--accent-dim);
+}
+
+/* ---- Pair Detail ---- */
+.pair-card {
+  background: var(--surface);
+  border: 1px solid rgba(192, 132, 252, 0.15);
+  border-radius: 12px;
+  padding: 24px;
+}
+
+.pair-names {
+  text-align: center;
+  font-size: 18px;
+  letter-spacing: 2px;
+  color: var(--text-bright);
+  margin-bottom: 16px;
+  text-transform: uppercase;
+}
+
+.breakdown {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.breakdown-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.breakdown-label {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--text);
+  width: 70px;
+  text-align: right;
+  flex-shrink: 0;
+}
+
+.breakdown-row .score-bar {
+  flex: 1;
+}
+
+/* ---- Footer ---- */
+footer {
+  text-align: center;
+  padding: 40px 0 20px;
+  font-size: 12px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.15);
+}
+
+/* ---- Responsive ---- */
+@media (max-width: 600px) {
+  .app {
+    padding: 32px 16px 24px;
+  }
+
+  h1 {
+    font-size: 28px;
+    letter-spacing: 4px;
+  }
+
+  .subtitle {
+    font-size: 12px;
+  }
+
+  .charts-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .group-score-number {
+    font-size: 48px;
+  }
+
+  .superlatives-grid {
+    grid-template-columns: 1fr;
+  }
+}
